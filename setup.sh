@@ -5,7 +5,7 @@ cp .zshrc ~/.zshrc
 source ~/.zshrc
 
 cp -R .config/* ~/.config
-cp .xinitrc ~/
+cp .xprofile ~/
 
 cp images/* ~/Pictures
 
