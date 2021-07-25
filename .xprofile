@@ -22,6 +22,8 @@ xinput set-prop "MOSART Semi. 2.4G Wireless Mouse" "libinput Accel Speed" 1
 # Blue terminal
 picom --config /home/leo/.config/picom/picom.conf &
 
+telegram &
+
 # libinput-gestures
 libinput-gestures-setup start
 
