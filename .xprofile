@@ -19,10 +19,10 @@ xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Accel Speed" 1 # incr
 xinput set-prop "SYNA2393:00 06CB:7A13 Mouse" "libinput Accel Speed" 1
 xinput set-prop "MOSART Semi. 2.4G Wireless Mouse" "libinput Accel Speed" 1
 
+birdtray &
+
 # Blue terminal
 picom --config /home/leo/.config/picom/picom.conf &
-
-mailspring &
 
 # libinput-gestures
 libinput-gestures-setup start
