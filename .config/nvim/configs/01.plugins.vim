@@ -16,12 +16,12 @@ Plug 'voldikss/vim-floaterm'
 Plug 'ap/vim-css-color'
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 Plug 'alvan/vim-closetag'
-Plug 'sbdchd/neoformat'
 Plug 'andrewradev/tagalong.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'raimondi/delimitmate'
 Plug 'tpope/vim-surround'
 Plug 'condy0919/docom.vim'
+Plug 'chiel92/vim-autoformat'
 
 call plug#end()
