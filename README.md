@@ -32,9 +32,18 @@ mount /dev/nvme0n1p8 /mnt
 mkdir /mnt/boot
 mount /dev/nvme0n1p6 /mnt/boot
 ```
+### Connect wifi
+**NOTE**: If you're able to connect to LAN, it's not necessary to do this setp
+```
+iwctl
+station wlan0 scan
+station wlan0 get-networks
+station wlan0 connect SSID
+```
+If a passphrase is required, you will be prompted to enter it. If there is any problem, `rfkill unblock wifi`
 ### Copy OS files to `/mnt`
 ```
-pacstrap /mnt base linux-lts linux-firmware util-linux grub efibootmgr os-prober intel-ucode connman vim
+pacstrap /mnt base linux-lts linux-firmware util-linux grub efibootmgr os-prober intel-ucode connman vim wpa_supplicant
 ```
 ### Generate `fstab` file
 ```
@@ -45,6 +54,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 ```
 arch-chroot /mnt
 ln -sf /user/share/zoneinfo/Asio/Ho_Chi_Minh /etc/localtime
+timedatectl set-local-rtc 1
 hwclock --systohc
 ```
 #### Set language
@@ -80,6 +90,9 @@ passwd
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUD
 mkdir /mnt/windows10
 mount /dev/(window10efiblock /mnt/windows10
+```
+Edit /etc/default/grub, add or uncomment GRUB_DISABLE_OS_PROBER=false
+```
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 Now `exit` and `reboot` to apply configurations.
@@ -114,24 +127,6 @@ visudo /etc/sudoers
 Then, uncomment line `%sudo ALL=(ALL) ALL` and `%wheel ALL=(ALL) ALL` to allow user can use sudo
 Now restart computer and login with new user.
 ## Essential packages
-### Fonts
-```
-yay -S ttf-vista-fonts ttf-ms-fonts
-sudo pacman -S ttf-dejavu ttf-fira-code ttf-opensans ttf-fira-code ttf-roboto
-```
-### bspwm
-```
-sudo pacman -S xorg xorg-xinit bspwm sxhkd git base-devel kitty picom
-git clone https://github.com/lioaslan/dotfiles.git
-```
-Copy `.config/bspwm` and `.config/sxhkd` to `~/.config`
-Put `exec bspwm` to `~/.xinitrc`
-### Background
-```
-sudo pacman -S feh
-```
-* Put command `feh --bg-fill /home/leo/dotfiles/images/bg.jpg` before `exec bspwm` in `~/.xinitrc` and `startx` to `.zprofile`
-* Restart or run `startx` to test and restart later
 ### Install AUR and google chrome
 ```
 git clone https://aur.archlinux.org/yay-git.git
@@ -140,15 +135,22 @@ makepkg -si
 
 yay -S google-chrome
 ```
+### Fonts
+```
+yay -S ttf-vista-fonts ttf-ms-fonts
+sudo pacman -S ttf-dejavu ttf-fira-code ttf-opensans ttf-fira-code ttf-roboto
+```
 ### Audio
 ```
-sudo pacman -S pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol
+sudo pacman -S pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol bluez bluez-utils
+sudo systemctl start bluetooth
+sudo systemctl enable bluetooth
 ```
-### Ibus-unikey
+### Ibus-bamboo
 ```
 sudo pacman -S ibus ibus-unikey
 ```
-Add these lines into `~/.xinitrc`
+Create and add these lines to `/etc/profile.d/ibus_bamboo`
 ```
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
@@ -162,27 +164,18 @@ ibus-daemon -drx
 ```
 yay -S libinput-gestures
 sudo pacman -S xdotool
+libinput-gestures-setup autostart
 ```
-* Add `libinput-gestures-setup start` into `~/.xinitrc`
 ### Install zsh
 ```
 sudo pacman -S zsh zsh-completions wget
 chsh -s /usr/bin/zsh
 zsh
 # select 0
-```
-* Add `startx` to `~/.zprofile`
-* Restart
-```
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 sudo pacman -S zsh-theme-powerlevel10k zsh-syntax-highlighting zsh-autosuggestions
 ```
-* Turn off comment above to turn on extensions
-```
-echo "source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
-echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
-echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
-```
+* Copy `.zshrc` from this repo to `$HOME`
 ### Nodejs
 ```
 sudo pacman -S nodejs-lts-erbium # for version 12.22.0
@@ -195,7 +188,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 # install dependencies
 sudo npm i -g eslint prettier
-pip3 install yapf pylint
+pip install yapf pylint
 
 # Clone config before doing this step
 cd ~/.config/nvim && nvim init.vim
