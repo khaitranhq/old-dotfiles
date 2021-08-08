@@ -126,6 +126,11 @@ visudo /etc/sudoers
 ```
 Then, uncomment line `%sudo ALL=(ALL) ALL` and `%wheel ALL=(ALL) ALL` to allow user can use sudo
 Now restart computer and login with new user.
+## XFCE 
+```
+sudo pacman -S xorg xorg-xinit fxce4 xfce4-goodies lightdm lightdm-gtk-greeter
+sudo systemctl enable lightdm
+```
 ## Essential packages
 ### Install AUR and google chrome
 ```
@@ -199,6 +204,25 @@ cd ~/.config/nvim && nvim init.vim
 ```
 sudo pacman -S fd ripgrep
 ```
+## Customize UI
+### Initial setup
+* Hide desktop icon: Click right to Desktop -> Desktop Settings -> Icons -> Icon Type: None
+* Click right to Desktop -> Settings -> Window Manager Tweaks:
+       * Cycling -> Uncheck Draw frame around selected...
+       * Placement -> Select At the center of the screen
+       * Compositor -> Uncheck Show shadows under regular windows
+       * Close
+```
+sudo pacman -S unzip
+mkdir ~/Downloads ~/Pictures
+cd ~/Downloads
+wget https://www.opencode.net/lsteam/xfce-big-sur-setup-file/-/raw/master/update-xfce-bigsur.zip
+unzip update-xfce-bigsur.zip
+cp -r update-xfce-bigsur/wallpapers ~/Pictures/
+```
+* Click right to Desktop -> Setting -> Desktop -> Change folder to `~/Pictures/wallpapers` -> Select a picture
+* Open Thunar File Manager, Send `Downloads`, `Pictures` to side pane
+### Theme - icons - cursors - fonts
 ## Optional package
 ### Docker
 ```
