@@ -2,6 +2,7 @@
 
 cp private/.zsh.common ~/
 cp .zshrc ~/.zshrc
+cp .astylerc ~/.astylerc
 source ~/.zshrc
 
 cp -R .config/* ~/.config
