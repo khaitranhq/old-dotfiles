@@ -1,10 +1,12 @@
 #!/bin/bash
 
-cp private/.zsh.common ~/
-cp .zshrc ~/.zshrc
+DOTFILE_DIR=/home/leo/Workspace/global/dotfiles
+
+cp $DOTFILE_DIR/private/.zsh.common ~/
+cp $DOTFILE_DIR/.zshrc ~/.zshrc
 source ~/.zshrc
 
-cp -R .config/* ~/.config
+cp -R $DOTFILE_DIR/.config/* ~/.config
 # cp .xprofile ~/
 
 # cp images/* ~/Pictures
