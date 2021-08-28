@@ -2,11 +2,11 @@
 
 DOTFILES_DIR=/home/leo/Workspace/global/dotfiles
 
-cp $DOTFILE_DIR/private/.zsh.common ~/
-cp $DOTFILE_DIR/.zshrc ~/.zshrc
+cp $DOTFILES_DIR/private/.zsh.common ~/
+cp $DOTFILES_DIR/.zshrc ~/.zshrc
 source ~/.zshrc
 
-cp -R $DOTFILE_DIR/.config/* ~/.config
+cp -R $DOTFILES_DIR/.config/* ~/.config
 # cp .xprofile ~/
 
 # cp images/* ~/Pictures
