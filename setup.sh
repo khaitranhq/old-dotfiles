@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTFILE_DIR=/home/leo/Workspace/global/dotfiles
+DOTFILES_DIR=/home/leo/Workspace/global/dotfiles
 
 cp $DOTFILE_DIR/private/.zsh.common ~/
 cp $DOTFILE_DIR/.zshrc ~/.zshrc
