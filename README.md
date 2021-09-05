@@ -169,7 +169,7 @@ Then, uncomment line `%sudo ALL=(ALL) ALL` and `%wheel ALL=(ALL) ALL` to allow u
 Now restart computer and login with new user.
 ## XFCE 
 ```
-sudo pacman -S xorg xorg-xinit fxce4 xfce4-goodies lightdm lightdm-gtk-greeter
+sudo pacman -S xorg xorg-xinit fxce4 xfce4-goodies lightdm lightdm-gtk-greeter xf86-video-intel
 sudo systemctl enable lightdm
 ```
 In `/etc/lightdm/lightdm.conf`, add `greeter-session=lightdm-yourgreeter-greeter` in [Seat:*] section. Reboot
@@ -324,6 +324,7 @@ cp ~/Downloads/update-xfce-bigsur/icons/launchpad.svg ~/.local/share/icons
 ..Setting in  dconf-editor
 ### Rofi
 ```
+sudo pacman -S librsvg libxdg-basedir libxkbcommon-x11 startup-notification xcb-util-cursor xcb-util-wm xcb-util-xrm check 
 wget https://github.com/davatorium/rofi/releases/download/1.6.1/rofi-1.6.1.tar.gz  
 cd rofi-1.6.1
 mkdir build && cd build
