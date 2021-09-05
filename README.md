@@ -43,7 +43,7 @@ station wlan0 connect SSID
 If a passphrase is required, you will be prompted to enter it. If there is any problem, `rfkill unblock wifi`
 ### Copy OS files to `/mnt`
 ```
-pacstrap /mnt base linux-lts linux-firmware util-linux grub efibootmgr os-prober intel-ucode connman vim wpa_supplicant
+pacstrap /mnt base linux linux-firmware util-linux grub efibootmgr os-prober intel-ucode connman vim wpa_supplicant base-devel
 ```
 ### Generate `fstab` file
 ```
@@ -131,6 +131,7 @@ Now restart computer and login with new user.
 sudo pacman -S xorg xorg-xinit fxce4 xfce4-goodies lightdm lightdm-gtk-greeter
 sudo systemctl enable lightdm
 ```
+In `/etc/lightdm/lightdm.conf`, add `greeter-session=lightdm-yourgreeter-greeter` in [Seat:*] section. Reboot
 ## Essential packages
 ### Install AUR and google chrome
 ```
@@ -150,10 +151,16 @@ sudo pacman -S ttf-dejavu ttf-fira-code ttf-opensans ttf-fira-code ttf-roboto
 sudo pacman -S pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol bluez bluez-utils
 sudo systemctl start bluetooth
 sudo systemctl enable bluetooth
+pulseaudio -D
 ```
 ### Ibus-bamboo
 ```
-sudo pacman -S ibus ibus-unikey
+sudo pacman -S ibus wget
+wget https://github.com/BambooEngine/ibus-bamboo/archive/refs/tags/v0.7.5.tar.gz
+tar xvzf v0.7.5.tar.gz
+cd ibus-bamboo-0.7.5
+sudo make install
+ibus restart
 ```
 Create and add these lines to `/etc/profile.d/ibus_bamboo`
 ```
