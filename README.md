@@ -1,9 +1,47 @@
 # Installation Arch
 ![image](https://user-images.githubusercontent.com/24852182/128619415-b989b820-ffe2-4d41-be5e-687018cca4ec.png)
 
-1. [Download](#download)
-2. [Start installing](#start-installing)
-
+* [Download](#download)
+* [Start installing](#start-installing)
+    * [Set time](#set-time)
+    * [Create partitions](#create-partitions)
+    * [Format partitions](#format-partitions)
+    * [Mount partitions's data](#Mount-partition’s-data)
+    * [Connect wifi](#connect-wifi)
+    * [Copy OS files to `/mnt`](#copy-os-files-to-mnt)
+    * [Generate fstab file](#generate-fstab-file)
+    * [Setting root](#setting-root)
+        * [Set local time](#set-local-time)
+        * [Set language](#set-language)
+        * [Set hostname](#set-hostname)
+        * [Setting network](#setting-network)
+        * [Set your password](#set-your-password)
+        * [Grub install](#grub-install)
+        * [Package manager](#package-manager)
+        * [Install ssh](#install-openssh)
+        * [Create user](#create-user)
+    * [XFCE](#xfce)
+    * [Essential packages](#essential-packages)
+        * [Install yay and google chrome](#install-aur-and-google-chrome)
+        * [Fonts](#fonts)
+        * [Audio](#audio)
+        * [ibus-bamboo](#ibus-bamboo)
+        * [libinput-gestures](#libinput-gestures)
+        * [zsh](#install-zsh)
+        * [nodejs](#nodejs)
+        * [neovim](#neovim)
+    * [Customize UI](#customize-ui)
+        * [Initial Setup](#initial-setup)
+        * [Theme + icons + cursor + fonts](#whitesur-gtk-theme--icon--cursor--fonts)
+        * [Global menu](#global-menu)
+        * [Xfce panel](#configuring-xfce-panel)
+        * [Plank](#plank)
+        * [Rofi](#rofi)
+    * [Optional package](#optional-package)
+        * [Docker](#docker)
+        * [Skype](#skype)
+        * [Telegram](#telegram)
+        * [Dbeaver](#dbeaver)
 ## Download 
 http://mirror.bizflycloud.vn/archlinux/iso/2021.07.01/
 ## Start installing
@@ -165,7 +203,7 @@ cd ibus-bamboo-0.7.5
 sudo make install
 ibus restart
 ```
-Create and add these lines to `/etc/profile.d/ibus_bamboo`
+Create and add these lines to `/etc/profile.d/ibus_bamboo.sh`
 ```
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
@@ -180,6 +218,15 @@ ibus-daemon -drx
 yay -S libinput-gestures
 sudo pacman -S xdotool
 libinput-gestures-setup autostart
+```
+Create and add these lines to `/etc/profile.d/libinput.sh`
+```
+xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1 # enable tapping
+xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Natural Scrolling Enabled" 1 # enable natural scroll
+xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Accel Speed" 1 # increase accell speed
+
+xinput set-prop "SYNA2393:00 06CB:7A13 Mouse" "libinput Accel Speed" 1
+xinput set-prop "MOSART Semi. 2.4G Wireless Mouse" "libinput Accel Speed" 1
 ```
 ### Install zsh
 ```
@@ -197,7 +244,7 @@ sudo pacman -S nodejs-lts-erbium # for version 12.22.0
 ```
 ### Neovim
 ```
-sudo pacman -S neovim python-pip npm xclip
+sudo pacman -S neovim python-pip npm xclip fd ripgrep
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
@@ -210,10 +257,6 @@ cd ~/.config/nvim && nvim init.vim
 ```
 * Open file `02.global.vim`, uncomment 4 lines at the end of file to map clipboard with neovim
 * Press `:so%` and run command `:PlugInstall`
-### fd + ripgrep
-```
-sudo pacman -S fd ripgrep
-```
 ## Customize UI
 ### Initial setup
 * Hide desktop icon: Click right to Desktop -> Desktop Settings -> Icons -> Icon Type: None
@@ -274,13 +317,19 @@ Open pannel setting and config
 * Logo: start-here
 ### Plank
 ```
-sudo pacman -S plank
+sudo pacman -S plank dconf-editor
 cp -r ~/Downloads/WhiteSur-gtk-theme/src/other/plank/ ~/.local/share/plank/themes
 cp ~/Downloads/update-xfce-bigsur/icons/launchpad.svg ~/.local/share/icons
 ```
+..Setting in  dconf-editor
 ### Rofi
 ```
-sudo pacman -S rofi
+wget https://github.com/davatorium/rofi/releases/download/1.6.1/rofi-1.6.1.tar.gz  
+cd rofi-1.6.1
+mkdir build && cd build
+../configure
+make
+sudo make install
 cp -r ~/Downloads/update-xfce-bigsur/rofi ~/.config/
 ```
 ## Optional package
