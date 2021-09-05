@@ -215,10 +215,10 @@ sudo pacman -S fd ripgrep
 ### Initial setup
 * Hide desktop icon: Click right to Desktop -> Desktop Settings -> Icons -> Icon Type: None
 * Click right to Desktop -> Settings -> Window Manager Tweaks:
-       * Cycling -> Uncheck Draw frame around selected...
-       * Placement -> Select At the center of the screen
-       * Compositor -> Uncheck Show shadows under regular windows
-       * Close
+       - Cycling -> Uncheck Draw frame around selected...
+       - Placement -> Select At the center of the screen
+       - Compositor -> Uncheck Show shadows under regular windows
+       - Close
 ```
 sudo pacman -S unzip
 mkdir ~/Downloads ~/Pictures
@@ -229,7 +229,57 @@ cp -r update-xfce-bigsur/wallpapers ~/Pictures/
 ```
 * Click right to Desktop -> Setting -> Desktop -> Change folder to `~/Pictures/wallpapers` -> Select a picture
 * Open Thunar File Manager, Send `Downloads`, `Pictures` to side pane
-### Theme - icons - cursors - fonts
+### WhiteSur-gtk theme + icon + cursor + fonts
+```
+sudo pacman -S gtk-engine-murrine sassc
+git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+./install.sh -c dark -c light
+cd ..
+git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
+./install.sh
+cd ..
+git clone https://github.com/vinceliuice/WhiteSur-cursors.git
+./install.sh
+
+mkdir ~/.fonts
+cp -r /home/leo/Downloads/update-xfce-bigsur/fonts/* ~/.fonts/
+```
+Click right on desktop -> Settings -> Appearance
+* In style, select WhiteSur-dark-solid
+* In Icons, select WhiteSure-dark
+* In Fonts, select SanFrancisco Display Regular
+Click right on desktop -> Settings -> Window manager -> Select Theme WhiteSur-dark, remove unneeded  icon, choose font San Francisco Display Medium
+### Global Menu
+```
+sudo pacman -Sy archlinux-keyring
+yay -S vala-panel-appmenu-common-git vala-panel-appmenu-registrar-git vala-panel-appmenu-xfce-git 
+sudo pacman -S appmenu-gtk-module 
+# Execute this command after enable vala-appmenu: 
+xfconf-query -c xsettings -p /Gtk/ShellShowsMenubar -n -t bool -s true 
+xfconf-query -c xsettings -p /Gtk/ShellShowsAppmenu -n -t bool -s true 
+```
+### Configuring Xfce Panel
+Go to [this](https://www.pling.com/p/1529470/) and download file.
+```
+cd ~/Download/archives
+unzip xpple_menu.zip
+cp -r ./applications ~/.local/share
+mkdir ~/.config/menu
+cp ./xpple.menu ~/.config/menu
+```
+Open pannel setting and config
+* Logo: start-here
+### Plank
+```
+sudo pacman -S plank
+cp -r ~/Downloads/WhiteSur-gtk-theme/src/other/plank/ ~/.local/share/plank/themes
+cp ~/Downloads/update-xfce-bigsur/icons/launchpad.svg ~/.local/share/icons
+```
+### Rofi
+```
+sudo pacman -S rofi
+cp -r ~/Downloads/update-xfce-bigsur/rofi ~/.config/
+```
 ## Optional package
 ### Docker
 ```
