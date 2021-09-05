@@ -1,7 +1,8 @@
 # Installation Arch
 ![image](https://user-images.githubusercontent.com/24852182/128619415-b989b820-ffe2-4d41-be5e-687018cca4ec.png)
 
-1. [Download](download)
+1. [Download](#download)
+2. [Start installing](#start-installing)
 
 ## Download 
 http://mirror.bizflycloud.vn/archlinux/iso/2021.07.01/
