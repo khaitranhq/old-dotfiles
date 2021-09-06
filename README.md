@@ -1,6 +1,47 @@
 # Installation Arch
 ![image](https://user-images.githubusercontent.com/24852182/128619415-b989b820-ffe2-4d41-be5e-687018cca4ec.png)
 
+* [Download](#download)
+* [Start installing](#start-installing)
+    * [Set time](#set-time)
+    * [Create partitions](#create-partitions)
+    * [Format partitions](#format-partitions)
+    * [Mount partitions's data](#Mount-partition’s-data)
+    * [Connect wifi](#connect-wifi)
+    * [Copy OS files to `/mnt`](#copy-os-files-to-mnt)
+    * [Generate fstab file](#generate-fstab-file)
+    * [Setting root](#setting-root)
+        * [Set local time](#set-local-time)
+        * [Set language](#set-language)
+        * [Set hostname](#set-hostname)
+        * [Setting network](#setting-network)
+        * [Set your password](#set-your-password)
+        * [Grub install](#grub-install)
+        * [Package manager](#package-manager)
+        * [Install ssh](#install-openssh)
+        * [Create user](#create-user)
+ * [XFCE](#xfce)
+ * [Essential packages](#essential-packages)
+     * [Install yay and google chrome](#install-aur-and-google-chrome)
+     * [Fonts](#fonts)
+     * [Audio](#audio)
+     * [ibus-bamboo](#ibus-bamboo)
+     * [libinput-gestures](#libinput-gestures)
+     * [zsh](#install-zsh)
+     * [nodejs](#nodejs)
+     * [neovim](#neovim)
+ * [Customize UI](#customize-ui)
+     * [Initial Setup](#initial-setup)
+     * [Theme + icons + cursor + fonts](#whitesur-gtk-theme--icon--cursor--fonts)
+     * [Global menu](#global-menu)
+     * [Xfce panel](#configuring-xfce-panel)
+     * [Plank](#plank)
+     * [Rofi](#rofi)
+ * [Optional package](#optional-package)
+     * [Docker](#docker)
+     * [Skype](#skype)
+     * [Telegram](#telegram)
+     * [Dbeaver](#dbeaver)
 ## Download 
 http://mirror.bizflycloud.vn/archlinux/iso/2021.07.01/
 ## Start installing
@@ -128,7 +169,7 @@ Then, uncomment line `%sudo ALL=(ALL) ALL` and `%wheel ALL=(ALL) ALL` to allow u
 Now restart computer and login with new user.
 ## XFCE 
 ```
-sudo pacman -S xorg xorg-xinit fxce4 xfce4-goodies lightdm lightdm-gtk-greeter
+sudo pacman -S xorg xorg-xinit fxce4 xfce4-goodies lightdm lightdm-gtk-greeter xf86-video-intel
 sudo systemctl enable lightdm
 ```
 In `/etc/lightdm/lightdm.conf`, add `greeter-session=lightdm-yourgreeter-greeter` in [Seat:*] section. Reboot
@@ -162,7 +203,7 @@ cd ibus-bamboo-0.7.5
 sudo make install
 ibus restart
 ```
-Create and add these lines to `/etc/profile.d/ibus_bamboo`
+Create and add these lines to `/etc/profile.d/ibus_bamboo.sh`
 ```
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
@@ -177,6 +218,15 @@ ibus-daemon -drx
 yay -S libinput-gestures
 sudo pacman -S xdotool
 libinput-gestures-setup autostart
+```
+Create and add these lines to `/etc/profile.d/libinput.sh`
+```
+xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1 # enable tapping
+xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Natural Scrolling Enabled" 1 # enable natural scroll
+xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Accel Speed" 1 # increase accell speed
+
+xinput set-prop "SYNA2393:00 06CB:7A13 Mouse" "libinput Accel Speed" 1
+xinput set-prop "MOSART Semi. 2.4G Wireless Mouse" "libinput Accel Speed" 1
 ```
 ### Install zsh
 ```
@@ -194,7 +244,7 @@ sudo pacman -S nodejs-lts-erbium # for version 12.22.0
 ```
 ### Neovim
 ```
-sudo pacman -S neovim python-pip npm xclip
+sudo pacman -S neovim python-pip npm xclip fd ripgrep
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
@@ -207,18 +257,14 @@ cd ~/.config/nvim && nvim init.vim
 ```
 * Open file `02.global.vim`, uncomment 4 lines at the end of file to map clipboard with neovim
 * Press `:so%` and run command `:PlugInstall`
-### fd + ripgrep
-```
-sudo pacman -S fd ripgrep
-```
 ## Customize UI
 ### Initial setup
 * Hide desktop icon: Click right to Desktop -> Desktop Settings -> Icons -> Icon Type: None
 * Click right to Desktop -> Settings -> Window Manager Tweaks:
-       * Cycling -> Uncheck Draw frame around selected...
-       * Placement -> Select At the center of the screen
-       * Compositor -> Uncheck Show shadows under regular windows
-       * Close
+       - Cycling -> Uncheck Draw frame around selected...
+       - Placement -> Select At the center of the screen
+       - Compositor -> Uncheck Show shadows under regular windows
+       - Close
 ```
 sudo pacman -S unzip
 mkdir ~/Downloads ~/Pictures
@@ -229,7 +275,64 @@ cp -r update-xfce-bigsur/wallpapers ~/Pictures/
 ```
 * Click right to Desktop -> Setting -> Desktop -> Change folder to `~/Pictures/wallpapers` -> Select a picture
 * Open Thunar File Manager, Send `Downloads`, `Pictures` to side pane
-### Theme - icons - cursors - fonts
+### WhiteSur-gtk theme + icon + cursor + fonts
+```
+sudo pacman -S gtk-engine-murrine sassc
+git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+./install.sh -c dark -c light
+cd ..
+git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
+./install.sh
+cd ..
+git clone https://github.com/vinceliuice/WhiteSur-cursors.git
+./install.sh
+
+mkdir ~/.fonts
+cp -r /home/leo/Downloads/update-xfce-bigsur/fonts/* ~/.fonts/
+```
+Click right on desktop -> Settings -> Appearance
+* In style, select WhiteSur-dark-solid
+* In Icons, select WhiteSure-dark
+* In Fonts, select SanFrancisco Display Regular
+Click right on desktop -> Settings -> Window manager -> Select Theme WhiteSur-dark, remove unneeded  icon, choose font San Francisco Display Medium
+### Global Menu
+```
+sudo pacman -Sy archlinux-keyring
+yay -S vala-panel-appmenu-common-git vala-panel-appmenu-registrar-git vala-panel-appmenu-xfce-git 
+sudo pacman -S appmenu-gtk-module 
+# Execute this command after enable vala-appmenu: 
+xfconf-query -c xsettings -p /Gtk/ShellShowsMenubar -n -t bool -s true 
+xfconf-query -c xsettings -p /Gtk/ShellShowsAppmenu -n -t bool -s true 
+```
+### Configuring Xfce Panel
+Go to [this](https://www.pling.com/p/1529470/) and download file.
+```
+cd ~/Download/archives
+unzip xpple_menu.zip
+cp -r ./applications ~/.local/share
+mkdir ~/.config/menu
+cp ./xpple.menu ~/.config/menu
+```
+Open pannel setting and config
+* Logo: start-here
+### Plank
+```
+sudo pacman -S plank dconf-editor
+cp -r ~/Downloads/WhiteSur-gtk-theme/src/other/plank/ ~/.local/share/plank/themes
+cp ~/Downloads/update-xfce-bigsur/icons/launchpad.svg ~/.local/share/icons
+```
+..Setting in  dconf-editor
+### Rofi
+```
+sudo pacman -S librsvg libxdg-basedir libxkbcommon-x11 startup-notification xcb-util-cursor xcb-util-wm xcb-util-xrm check 
+wget https://github.com/davatorium/rofi/releases/download/1.6.1/rofi-1.6.1.tar.gz  
+cd rofi-1.6.1
+mkdir build && cd build
+../configure
+make
+sudo make install
+cp -r ~/Downloads/update-xfce-bigsur/rofi ~/.config/
+```
 ## Optional package
 ### Docker
 ```
