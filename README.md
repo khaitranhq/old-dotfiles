@@ -37,6 +37,7 @@
      * [Xfce panel](#configuring-xfce-panel)
      * [Plank](#plank)
      * [Rofi](#rofi)
+     * [Conky](#conky)
  * [Optional package](#optional-package)
      * [Docker](#docker)
      * [Skype](#skype)
@@ -333,6 +334,14 @@ make
 sudo make install
 cp -r ~/Downloads/update-xfce-bigsur/rofi ~/.config/
 ```
+### Conky
+```
+yay -S conky-lua-nv
+sudo pacman -S jq curl
+mkdir ~/.conky
+cp -r ~/Downloads/update-xfce-bigsur/conky/* ~/.conky
+```
+Then add command `/home/leo/.conky/MX-CoreBlue/start_conky.sh` to startup
 ## Optional package
 ### Docker
 ```
