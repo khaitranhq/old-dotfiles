@@ -7,8 +7,7 @@ cp $DOTFILES_DIR/.zshrc ~/.zshrc
 source ~/.zshrc
 
 cp -R $DOTFILES_DIR/.config/* ~/.config
-# cp .xprofile ~/
 
-# cp images/* ~/Pictures
+cp $DOTFILES_DIR/vim/* ~/.vim
 
 echo 'Copying successfully'
