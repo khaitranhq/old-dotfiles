@@ -29,7 +29,7 @@
      * [libinput-gestures](#libinput-gestures)
      * [zsh](#install-zsh)
      * [nodejs](#nodejs)
-     * [neovim](#neovim)
+     * [vim](#vim)
  * [Customize UI](#customize-ui)
      * [Initial Setup](#initial-setup)
      * [Theme + icons + cursor + fonts](#whitesur-gtk-theme--icon--cursor--fonts)
@@ -243,18 +243,15 @@ sudo pacman -S zsh-theme-powerlevel10k zsh-syntax-highlighting zsh-autosuggestio
 ```
 sudo pacman -S nodejs-lts-erbium # for version 12.22.0
 ```
-### Neovim
+### vim
 ```
 sudo pacman -S neovim python-pip npm xclip fd ripgrep
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # install dependencies
 sudo npm i -g eslint prettier
 pip install yapf pylint
-
-# Clone config before doing this step
-cd ~/.config/nvim && nvim init.vim
 ```
 * Open file `02.global.vim`, uncomment 4 lines at the end of file to map clipboard with neovim
 * Press `:so%` and run command `:PlugInstall`
