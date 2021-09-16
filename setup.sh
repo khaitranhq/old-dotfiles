@@ -8,6 +8,4 @@ source ~/.zshrc
 
 cp -R $DOTFILES_DIR/.config/* ~/.config
 
-cp $DOTFILES_DIR/vim/* ~/.vim
-
 echo 'Copying successfully'
