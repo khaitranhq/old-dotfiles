@@ -258,6 +258,10 @@ cd ~/.config/nvim && nvim init.vim
 ```
 * Open file `02.global.vim`, uncomment 4 lines at the end of file to map clipboard with neovim
 * Press `:so%` and run command `:PlugInstall`
+### Window switcher
+```
+yay -S xfdashboard
+```
 ## Customize UI
 ### Initial setup
 * Hide desktop icon: Click right to Desktop -> Desktop Settings -> Icons -> Icon Type: None
