@@ -22,6 +22,7 @@
         * [Create user](#create-user)
  * [XFCE](#xfce)
  * [Essential packages](#essential-packages)
+     * [konsole](#konsole)
      * [Install yay and google chrome](#install-aur-and-google-chrome)
      * [Fonts](#fonts)
      * [Audio](#audio)
