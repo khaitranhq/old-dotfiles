@@ -175,6 +175,10 @@ sudo systemctl enable lightdm
 ```
 In `/etc/lightdm/lightdm.conf`, add `greeter-session=lightdm-yourgreeter-greeter` in [Seat:*] section. Reboot
 ## Essential packages
+### konsole
+```
+sudo pacman -S konsole
+```
 ### Install AUR and google chrome
 ```
 git clone https://aur.archlinux.org/yay-git.git
