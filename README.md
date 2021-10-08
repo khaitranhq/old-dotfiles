@@ -174,7 +174,7 @@ Now restart computer and login with new user.
 sudo pacman -S xorg xorg-xinit fxce4 xfce4-goodies lightdm lightdm-gtk-greeter xf86-video-intel
 sudo systemctl enable lightdm
 ```
-In `/etc/lightdm/lightdm.conf`, add `greeter-session=lightdm-yourgreeter-greeter` in [Seat:*] section. Reboot
+In `/etc/lightdm/lightdm.conf`, add `greeter-session=lightdm-yourgreeter-greeter` in `[Seat:*]` section. Reboot
 ## Essential packages
 ### konsole
 ```
@@ -308,11 +308,11 @@ Click right on desktop -> Settings -> Window manager -> Select Theme WhiteSur-da
 ### Global Menu
 ```
 sudo pacman -Sy archlinux-keyring
-yay -S vala-panel-appmenu-common-git vala-panel-appmenu-registrar-git vala-panel-appmenu-xfce-git 
-sudo pacman -S appmenu-gtk-module 
-# Execute this command after enable vala-appmenu: 
-xfconf-query -c xsettings -p /Gtk/ShellShowsMenubar -n -t bool -s true 
-xfconf-query -c xsettings -p /Gtk/ShellShowsAppmenu -n -t bool -s true 
+yay -S vala-panel-appmenu-common-git vala-panel-appmenu-registrar-git vala-panel-appmenu-xfce-git
+sudo pacman -S appmenu-gtk-module
+# Execute this command after enable vala-appmenu:
+xfconf-query -c xsettings -p /Gtk/ShellShowsMenubar -n -t bool -s true
+xfconf-query -c xsettings -p /Gtk/ShellShowsAppmenu -n -t bool -s true
 ```
 ### Configuring Xfce Panel
 Go to [this](https://www.pling.com/p/1529470/) and download file.
@@ -325,6 +325,7 @@ cp ./xpple.menu ~/.config/menu
 ```
 Open pannel setting and config
 * Logo: start-here
+* Add necessary items. Especially, remember add Generic Monitor and use script `~/.config/cpu_ram_usgae.pl`
 ### Plank
 ```
 sudo pacman -S plank dconf-editor
@@ -342,13 +343,6 @@ mkdir build && cd build
 make
 sudo make install
 cp -r ~/Downloads/update-xfce-bigsur/rofi ~/.config/
-```
-### Conky
-```
-yay -S conky-lua-nv
-sudo pacman -S jq curl
-mkdir ~/.conky
-cp -r ~/Downloads/update-xfce-bigsur/conky/* ~/.conky
 ```
 Then add command `/home/leo/.conky/MX-CoreBlue/start_conky.sh` to startup
 ## Optional package
