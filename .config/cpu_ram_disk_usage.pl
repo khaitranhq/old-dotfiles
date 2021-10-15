@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# TODO convert to python
+
 # stats.pl - returns CPU and RAM usage
 
 
@@ -20,4 +20,10 @@ my $available = `grep -e "^MemAvailable" -m 1 /proc/meminfo`;
 $available =~ s/([^0-9]*)([0-9]*)(.*)$/$2/;
 
 my $memusage = 100 - ($available / $total * 100);
-printf "RAM: %02d%%\n","$memusage";
+printf "RAM: %02d%% ","$memusage";
+
+# Disk stuff
+
+my $diskinfo = `df -h | awk 'NR==4'`;
+my @diskinfolist = split(/\s+/, $diskinfo);
+printf "DISK %02d%% ","$diskinfolist[4]";
