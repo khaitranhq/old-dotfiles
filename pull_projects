@@ -1,0 +1,19 @@
+#!/usr/bin/python3
+
+import os
+
+WORKSPACE_DIR = '/home/leo/Workspace/'
+
+LIST_PROJECTS = [{
+    'dir': 'ultorex/ultorex-infra/apps-deploy',
+    'git': 'git@gitlab.com:ultorex/infra-group/apps-deploy.git'
+}]
+
+for project in LIST_PROJECTS:
+    project_full_dir = WORKSPACE_DIR + project['dir']
+    if not os.path.exists(project_full_dir):
+        os.system('mkdir -p %s' % (project_full_dir))
+        os.system('cd %s && git clone %s %s' % (project_full_dir, project['git'], project_full_dir))
+        os.system('cd %s' % (WORKSPACE_DIR))
+    else:
+        print('%s existed' % project['dir'])
