@@ -10,6 +10,9 @@ LIST_PROJECTS = [{
 }, {
     'dir': 'credentials',
     'git': 'git@github.com:lioaslan/credentials.git'
+}, {
+    'dir': 'ticket',
+    'git': 'git@github.com:lioaslan/ticket.git'
 }]
 
 for project in LIST_PROJECTS:
