@@ -31,6 +31,17 @@ LIST_PROJECTS = [{
 }, {
     'dir': 'ultorex/ultorex-be/hibtc-web',
     'git': 'git@gitlab.com:ultorex/backend-group/hibtc-web.git'
+}, {
+    'dir':
+    'ultorex/automation_selenium',
+    'git':
+    'git@gitlab.com:ultorex/testing-group/automation_selenium.git'
+}, {
+    'dir': 'ultorex/ultorex-be/ticker',
+    'git': 'git@gitlab.com:ultorex/backend-group/ticker.git'
+}, {
+    'dir': 'linux-control-center',
+    'git': 'git@github.com:lioaslan/linux-control-center.git'
 }]
 
 for project in LIST_PROJECTS:
