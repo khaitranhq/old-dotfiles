@@ -317,6 +317,7 @@ xfconf-query -c xsettings -p /Gtk/ShellShowsAppmenu -n -t bool -s true
 ### Configuring Xfce Panel
 Go to [this](https://www.pling.com/p/1529470/) and download file.
 ```
+sudo pacman -S xfce4-genmon-plugin
 cd ~/Download/archives
 unzip xpple_menu.zip
 cp -r ./applications ~/.local/share
