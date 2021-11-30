@@ -70,44 +70,25 @@ echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> 
 echo "source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 ```
 
-### bspwm + polybar + rofi
-* In order to clone repository easily, let create a ssh key
+### rofi
 ```
-ssh-keygen -t rsa -b 4096 -C "leoalan5577@gmail.com"
-cd ~/.ssh
-```
-Copy the content of file which has extension `.pub` and paste to SSH keygen of Github
-* Install and configuration
-```
-sudo apt update
-sudo apt install bspwm kakoune dmenu rofi scrot feh dunst 
-
-# install polybar
-sudo apt install build-essential git cmake cmake-data pkg-config python3-sphinx python3-packaging libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev
-sudo apt install libnl-genl-3-dev libasound2-dev
-git clone --recursive https://github.com/polybar/polybar
-cd polybar
-mkdir build
-cd build
-cmake .. -DENABLE_ALSA=ON
-make -j$(nproc)
+wget https://github.com/libcheck/check/releases/download/0.12.0/check-0.12.0.tar.gz
+tar xvf check-0.12.0.tar.gz
+cd check-0.12.0
+./configure
+make
+make check
+sudo make install
+sudo apt install libxcb-util-dev libxcb-xkb-dev libxkbcommon-x11-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xrm-dev libxcb-randr0-dev libxcb-xinerama0-dev libstartup-notification0-dev
+wget https://github.com/davatorium/rofi/releases/download/1.6.1/rofi-1.6.1.tar.gz  
+tar xvf rofi-1.6.1.tar.gz
+cd rofi-1.6.1
+mkdir build && cd build
+../configure
+make
 sudo make install
 
-# Create and clone repos for working
-mkdir ~/Workspace && cd ~/Workspace
-git clone git@github.com:lioaslan/global.git
-cd global && ./init.sh
-
-# Copy bspwm, sxhkd, kitty, onedrive, zshrc,... config
-cd dotfiles
-source ./setup.sh
-
-# Setup dependencies for polybar
-cd polybar
-./setup.sh
-
 ```
-* After that, logout and login again to bspwm WM
 ### Node
 ```
 sudo apt update
