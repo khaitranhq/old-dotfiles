@@ -1,11 +1,8 @@
 #!/bin/bash
 
-#cp .zshrc ~/.zshrc
-#source ~/.zshrc
+cp -R ~/Workspace/dotfiles/.config/* ~/.config
 
-cp -R ~/Workspaces/dotfiles/.config/* ~/.config
-
-cp ~/Workspaces/dotfiles/private/.zsh.common ~/.zsh.common
+cp ~/Workspace/dotfiles/private/.zsh.common ~/.zsh.common
 
 source ~/.zshrc
 echo 'Copying successfully'

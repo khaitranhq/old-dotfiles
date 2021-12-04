@@ -2,7 +2,7 @@
 
 import os
 
-WORKSPACE_DIR = '/home/leo/Workspaces/'
+WORKSPACE_DIR = '/home/leo/Workspace/'
 
 LIST_PROJECTS = [{
     'dir': 'ultorex/ultorex-infra/apps-deploy',
@@ -50,6 +50,26 @@ LIST_PROJECTS = [{
 }, {
     'dir': 'competitive-programming',
     'git': 'git@github.com:lioaslan/competitive-programming.git'
+}, {
+    'dir': 'email-signatures',
+    'git': 'git@github.com:lioaslan/email-signatures.git'
+}, {
+    'dir':
+    'ultorex/ultorex-be/hibtc-web-back',
+    'git':
+    'git@gitlab.com:ultorex/backend-group/hibtc-web-back.git'
+}, {
+    'dir': 'ultorex/ultorex-be/mine',
+    'git': 'git@gitlab.com:ultorex/backend-group/mine.git'
+}, {
+    'dir': 'ultorex/ultorex-be/news',
+    'git': 'git@gitlab.com:ultorex/backend-group/news.git'
+}, {
+    'dir': 'ultorex/ultorex-be/order-bot',
+    'git': 'git@gitlab.com:ultorex/backend-group/order-bot.git'
+}, {
+    'dir': 'ultorex/ultorex-be/xex-back',
+    'git': 'git@gitlab.com:ultorex/backend-group/xex-back.git'
 }]
 
 for project in LIST_PROJECTS:
