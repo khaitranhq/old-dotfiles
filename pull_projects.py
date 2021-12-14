@@ -70,6 +70,20 @@ LIST_PROJECTS = [{
 }, {
     'dir': 'ultorex/ultorex-be/xex-back',
     'git': 'git@gitlab.com:ultorex/backend-group/xex-back.git'
+}, {
+    'dir': 'todo',
+    'git': 'git@github.com:lioaslan/ToDo.git'
+}, {
+    'dir': 'ultorex/ultorex-be/trade-bot',
+    'git': 'git@gitlab.com:ultorex/backend-group/trade-bot.git'
+}, {
+    'dir': 'koindex/koindex-fe/web',
+    'git': 'git@gitlab.com:koindex/clients-group/koindex-web.git'
+}, {
+    'dir':
+    'ultorex/ultorex-fe/ultorex-nextjs-web',
+    'git':
+    'git@gitlab.com:ultorex/clients-group/ultorex-nextjs-web.git'
 }]
 
 for project in LIST_PROJECTS:
