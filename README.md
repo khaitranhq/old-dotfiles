@@ -72,6 +72,7 @@ echo "source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions
 
 ### rofi
 ```
+sudo apt install g++ gcc
 wget https://github.com/libcheck/check/releases/download/0.12.0/check-0.12.0.tar.gz
 tar xvf check-0.12.0.tar.gz
 cd check-0.12.0
