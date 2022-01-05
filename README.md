@@ -50,8 +50,9 @@ Reboot computer
 ## Install oh-my-zsh
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
-## Install zsh-theme-powerlevel9k
-sudo apt-get install zsh-theme-powerlevel9k
+## Install zsh-theme-powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 
 ## Install zsh-syntax-highlighting
 sudo apt-get install zsh-syntax-highlighting
@@ -61,7 +62,6 @@ git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plu
 
 ## Turn on extension above
 ### Not required, these lines were already in .zshrc of this repo
-echo "source /usr/share/powerlevel9k/powerlevel9k.zsh-theme" >> ~/.zshrc
 echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
 echo "source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 ```
