@@ -80,7 +80,7 @@ cd check-0.12.0
 make
 make check
 sudo make install
-sudo apt install libxcb-util-dev libxcb-xkb-dev libxkbcommon-x11-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xrm-dev libxcb-randr0-dev libxcb-xinerama0-dev libstartup-notification0-dev libgio2.0-cil-dev
+sudo apt install libxcb-util-dev libxcb-xkb-dev libxkbcommon-x11-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xrm-dev libxcb-randr0-dev libxcb-xinerama0-dev libstartup-notification0-dev libglib2.0-dev libpango1.0-dev libpangocairo-1.0-0 libgdk-pixbuf2.0-dev
 wget https://github.com/davatorium/rofi/releases/download/1.6.1/rofi-1.6.1.tar.gz  
 tar xvf rofi-1.6.1.tar.gz
 cd rofi-1.6.1
