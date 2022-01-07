@@ -1,7 +1,6 @@
 # Configuration for my Linux
 ## Introduction
 This repository is configuration of linux combo which I'm using.
-It includes `Linux Mint `, `bspwm`, `polybar`, `rofi`, `neovim`, ...etc
 ## Installation
 ### Linux Mint Xfce
 * Prepair a parition about > 50GB (I think it's enough for my work)
@@ -16,9 +15,9 @@ This command will fix time error when you install dual Window and Linux
 ```
 timedatectl set-local-rtc 1
 ```
-### kitty
+### konsole
 ```
-sudo apt install kitty
+sudo apt install -y konsole
 ```
 ### libinput-gestures
 * Install
@@ -27,10 +26,7 @@ sudo gpasswd -a $USER input
 ```
 Reboot computer
 ```
-sudo install git
-sudo apt-get install wmctrl xdotool
-sudo apt-get install libinput-tools
-sudo apt install gcc g++ make
+sudo apt-get install -y wmctrl xdotool libinput-tools gcc g++ make git
 
 
 git clone https://github.com/bulletmark/libinput-gestures.git
@@ -54,8 +50,9 @@ Reboot computer
 ## Install oh-my-zsh
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
-## Install zsh-theme-powerlevel9k
-sudo apt-get install zsh-theme-powerlevel9k
+## Install zsh-theme-powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 
 ## Install zsh-syntax-highlighting
 sudo apt-get install zsh-syntax-highlighting
@@ -65,7 +62,6 @@ git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plu
 
 ## Turn on extension above
 ### Not required, these lines were already in .zshrc of this repo
-echo "source /usr/share/powerlevel9k/powerlevel9k.zsh-theme" >> ~/.zshrc
 echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
 echo "source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 ```
@@ -80,7 +76,7 @@ cd check-0.12.0
 make
 make check
 sudo make install
-sudo apt install libxcb-util-dev libxcb-xkb-dev libxkbcommon-x11-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xrm-dev libxcb-randr0-dev libxcb-xinerama0-dev libstartup-notification0-dev libgio2.0-cil-dev
+sudo apt install libxcb-util-dev libxcb-xkb-dev libxkbcommon-x11-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xrm-dev libxcb-randr0-dev libxcb-xinerama0-dev libstartup-notification0-dev libglib2.0-dev libpango1.0-dev libpangocairo-1.0-0 libgdk-pixbuf2.0-dev
 wget https://github.com/davatorium/rofi/releases/download/1.6.1/rofi-1.6.1.tar.gz  
 tar xvf rofi-1.6.1.tar.gz
 cd rofi-1.6.1
@@ -92,10 +88,9 @@ sudo make install
 ```
 ### Node
 ```
-sudo apt update
-sudo apt install curl dirmngr apt-transport-https lsb-release ca-certificates
+sudo apt update && sudo apt install -y curl dirmngr apt-transport-https lsb-release ca-certificates
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt install nodejs
+sudo apt install -y nodejs
 ```
 ### fd + ripgrep
 These packages are nescessary for neovim
@@ -108,16 +103,15 @@ sudo apt install ripgrep
 ### Neovim
 ```
 sudo add-apt-repository ppa:neovim-ppa/stable 
-sudo apt-get update
-sudo apt-get install neovim python3-pip
+sudo apt-get update && sudo apt-get -y install neovim python3-pip clang-format
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # install dependencies
 sudo npm i -g eslint prettier
 pip3 install yapf pylint
-sudo apt install clang-format
 
+git clone git@github.com:lioaslan/nvim.git ~/.config/nvim
 cd ~/.config/nvim && nvim init.vim
 ```
 Press `:so%` and run command `:PlugInstall`
@@ -164,15 +158,6 @@ wget https://download.dbeaver.com/community/21.1.0/dbeaver-ce_21.1.0_amd64.deb
 sudo apt install ./dbeaver-ce_21.1.0_amd64.deb
 rm -f ./dbeaver-ce_21.1.0_amd64.deb
 ```
-## Notion
-This installation is optional, I have switched to using web app instead.
-```
-wget https://github.com/davidbailey00/notion-linux/releases/download/v2.0.6-windows/notion-desktop_2.0.6_amd64.deb
-sudo apt install ./notion-desktop_2.0.6_amd64.deb
-rm -f ./notion-desktop_2.0.6_amd64.deb
-```
-## Setting mouse, touchpad
-Follow [this](https://wiki.archlinux.org/title/Libinput#Via_Xorg_configuration_file). There are some configurates about it in `bspwmrc` file
 ## Setting boot logo
 ```
 sudo cp ./images/boot-logo.png /usr/share/plymouth/themes/mint-logo/logo.png
