@@ -103,13 +103,20 @@ sudo apt install ripgrep
 ### Neovim
 ```
 sudo add-apt-repository ppa:neovim-ppa/stable 
-sudo apt-get update && sudo apt-get -y install neovim python3-pip clang-format
+sudo apt-get update && sudo apt-get -y install neovim python3-pip clang-format watchman
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # install dependencies
 sudo npm i -g eslint prettier
 pip3 install yapf pylint
+
+mkdir -p /home/leo/.config/coc/extensions/coc-java-data/server
+cd /home/leo/.config/coc/extensions/coc-java-data/server
+wget https://download.eclipse.org/jdtls/milestones/1.7.0/jdt-language-server-1.7.0-202112161541.tar.gz
+tar xvf jdt-language-server-1.7.0-202112161541.tar.gz
+rm -rf jdt-language-server-1.7.0-202112161541.tar.gz
+
 
 git clone git@github.com:lioaslan/nvim.git ~/.config/nvim
 cd ~/.config/nvim && nvim init.vim
