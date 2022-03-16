@@ -1,8 +1,13 @@
 #!/bin/bash
 
-cp -R ~/Workspace/dotfiles/.config/* ~/.config
+SCRIPT_DIR=`readlink -f $0`
+SCRIPT_DIR_PARENT=`dirname $SCRIPT_DIR`
 
-cp ~/Workspace/dotfiles/private/.zsh.common ~/.zsh.common
+cp -R $SCRIPT_DIR_PARENT/.config/* ~/.config
+
+cp $SCRIPT_DIR_PARENT/private/.zsh.common ~/.zsh.common
+
+cp $SCRIPT_DIR_PARENT/.tmux.conf ~
 
 source ~/.zshrc
 echo 'Copying successfully'
